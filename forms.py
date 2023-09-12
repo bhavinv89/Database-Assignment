@@ -1,20 +1,24 @@
+"""Forms for playlist app."""
+
+from wtforms import SelectField, StringField
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, SelectMultipleField, SubmitField, SelectField
-from wtforms.validators import DataRequired, Length, NumberRange
+from wtforms.validators import InputRequired
+
 
 class PlaylistForm(FlaskForm):
     """Form for adding playlists."""
-    name = StringField('Name', validators=[DataRequired(), Length(min=1, max=100)])
-    description = StringField('Description', validators=[Length(max=500)])
-    submit = SubmitField('Create Playlist')
+
+    # Add the necessary code to use this form
+    name = StringField("Name", validators=[InputRequired()])
+    description = StringField("Description", validators=[InputRequired()])
+
 
 class SongForm(FlaskForm):
     """Form for adding songs."""
-    title = StringField('Title', validators=[DataRequired(), Length(min=1, max=100)])
-    artist = StringField('Artist', validators=[DataRequired(), Length(min=1, max=100)])
-    duration = IntegerField('Duration (in seconds)', validators=[DataRequired(), NumberRange(min=1)])
-    submit = SubmitField('Create Song')
 
+    # Add the necessary code to use this form
+    title = StringField("Title", validators=[InputRequired()])
+    artist = StringField("Artist", validators=[InputRequired()])
 
 
 # DO NOT MODIFY THIS FORM - EVERYTHING YOU NEED IS HERE
@@ -22,4 +26,3 @@ class NewSongForPlaylistForm(FlaskForm):
     """Form for adding a song to playlist."""
 
     song = SelectField('Song To Add', coerce=int)
-    playlist = SelectField('Playlist', coerce=int)
